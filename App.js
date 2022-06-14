@@ -1,12 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import HomeScreen from './screens/HomeScreen';
+import MovieScreen from './screens/MovieScreen';
+import Header from './components/Header';
+import { store } from './store';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Amplify } from 'aws-amplify'
+import awsconfig from './src/aws-exports'
+Amplify.configure(awsconfig)
 export default function App() {
+  const Stack = createNativeStackNavigator()
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <Header/>
+        <Stack.Navigator initialRouteName='HomeScreen'>
+          <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='MovieScreen' component={MovieScreen} options={{headerShown:false}}/>
+        </Stack.Navigator>
+      </SafeAreaProvider>
+    </NavigationContainer>
+    </Provider>
   );
 }
 
