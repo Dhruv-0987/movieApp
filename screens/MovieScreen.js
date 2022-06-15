@@ -10,7 +10,7 @@ const MovieScreen = () => {
     const movie = useSelector(getMovieTitle)
     const [cast, setCast] = useState(null)
     const navigator = useNavigation()
-    
+
     useEffect(()=>{
        if(movie){
         setCast(movie.cast.actors)
@@ -32,7 +32,7 @@ const MovieScreen = () => {
             </View>
             <View style={tw`flex-row items-center justify-center ml-4`}>
                 <TouchableOpacity onPress={()=>Linking.openURL(movie.trailer)} style={tw`m-2 w-40 h-10 border-gray-400 rounded-lg bg-[#bdb2ff]`}>
-                    <Text style={tw`text-center mt-1 text-white font-bold text-lg`}>Watch Trailer!</Text>
+                    <Text style={tw`text-center mt-1 text-white font-bold text-lg`}>Watch Trailer</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>navigator.navigate('BookingScreen')} style={tw`m-2 w-40 h-10 border-gray-400 rounded-lg bg-[#bdb2ff]`}>
                     <Text style={tw`text-center mt-1 text-white font-bold text-lg`}>Book Now</Text>

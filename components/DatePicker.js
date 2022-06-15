@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const DatePicker = () => {
     const dispatch = useDispatch()
     const [week, setWeek] = useState([])
-    const [currentDate, setCurrentDate] = useState(new Date())
+    const [currentDate, setCurrentDate] = useState(null)
     const [currentMovie, setCurrentMovie] = useState(null)
     var dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var monthOfYear =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] 
@@ -32,6 +32,7 @@ const DatePicker = () => {
             day: item.day,
             month: item.month
         }))
+        setCurrentDate(item.date)
     }
 
   return (
@@ -45,8 +46,8 @@ const DatePicker = () => {
                 <View style={tw`flex-row h-20 items-center justify-center`}>
                     <TouchableOpacity onPress={()=>handleDateSelect(item.item)}>
                         <View style={tw`h-[20px] w-10 bg-gray-100 mb-4`}>
-                            <Text style={tw`font-semibold text-md text-center`}>{item.item.date}</Text>
-                            <Text style={tw`font-semibold text-md text-center`}>{item.item.day}</Text>
+                            <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date ? "text-purple-400": "text-black"}`}>{item.item.date}</Text>
+                            <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date ? "text-purple-400": "text-black"}`}>{item.item.day}</Text>
                         </View>
                     </TouchableOpacity>
                     <View style={tw`h-full w-[2px] bg-gray-400 mr-4 ml-4`}></View>
