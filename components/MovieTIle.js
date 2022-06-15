@@ -17,8 +17,10 @@ const MovieTIle = ({movie}) => {
         rating: movie.rating,
         thumbnail: movie.thumbnail,
         cast: movie.cast,
-        tailer: movie.trailerLink,
-        information: movie.information
+        trailer: movie.trailerLink,
+        information: movie.information,
+        cast: movie.cast,
+        shows: movie.shows
       }))
       navigator.navigate('MovieScreen')
     }
@@ -27,7 +29,7 @@ const MovieTIle = ({movie}) => {
     <View style={tw`flex-row items-center mt-4 rounded-md shadow-md justify-start h-70 mr-4 ml-4 border-gray-200 bg-gray-100`}>
       <Image style={tw`h-60 w-40 ml-4 rounded-md`}
       source={{uri: movie.thumbnail}}/>
-      <View style={tw`flex items-start justify-top align-text-top ml-2`}>
+      <View style={tw`flex items-start justify-top ml-2`}>
       <View>
         <Text style={tw`text-xl text-gray-600 font-semibold`}>{movie.title}</Text>
         <Text >{movie.formats}</Text>

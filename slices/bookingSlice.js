@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     movieTitle: null,
-    placeAndTime: null,
+    date: null,
+    time: null,
     numberOfSeats: null,
     seatNumbers: null
 }
@@ -14,8 +15,11 @@ const bookSlice = createSlice({
         setMovieTitle: (state, action) => {
             state.movieTitle = action.payload
         },
-        setPlaceAndTime: (state, action) => {
-            state.placeAndTime = action.payload
+        setDate: (state, action) => {
+            state.date = action.payload
+        },
+        setTime: (state, action) => {
+            state.time = action.payload
         },
         setNumberOfSeats: (state, action) => {
             state.numberOfSeats = action.payload
@@ -26,11 +30,11 @@ const bookSlice = createSlice({
     }
 })
 
-export const {setMovieTitle, setPlaceAndTime, setNumberOfSeats, setSeatNumbers} = bookSlice.actions
+export const {setMovieTitle, setDate, setNumberOfSeats, setSeatNumbers, setTime} = bookSlice.actions
 
 export const getMovieTitle = (state) => state.book.movieTitle;
-export const getPlaceAndTime = (state) => state.book.placeAndTime;
+export const getDate = (state) => state.book.date;
 export const getNumberOfSeats = (state) => state.book.numberOfSeats;
 export const getSeatNumbers = (state) => state.book.getSeatNumbers;
-
+export const getTime = (state) => state.book.time
 export default bookSlice.reducer

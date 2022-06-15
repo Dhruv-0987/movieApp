@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
 import MovieScreen from './screens/MovieScreen';
+import BookingScreen from './screens/BookingScreen';
 import Header from './components/Header';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,10 +18,11 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer>
       <SafeAreaProvider>
-        <Header/>
+        
         <Stack.Navigator initialRouteName='HomeScreen'>
           <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown:false}}/>
           <Stack.Screen name='MovieScreen' component={MovieScreen} options={{headerShown:false}}/>
+          <Stack.Screen name='BookingScreen' component={BookingScreen} options={{headerShown:false}}/>
         </Stack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>

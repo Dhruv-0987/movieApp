@@ -5,7 +5,7 @@ import tw from "tailwind-react-native-classnames"
 import { DataStore } from 'aws-amplify'
 import { Movies } from '../src/models'
 import MovieTIle from '../components/MovieTIle'
-import { ConsoleSqlOutlined } from '@ant-design/icons'
+import Header from '../components/Header'
 const HomeScreen = () => {
     const [movies, setMovies] = useState(null)
     const [fetched, setFetched] = useState(false)
@@ -14,11 +14,10 @@ const HomeScreen = () => {
             setMovies(res)
             if (movies != null && movies != undefined){
                 setFetched(true)
-                console.log(movies[0], 'in home screen')
+                
             }
         })
     }
-
     useEffect(() => {
         getMovies()
     }, [])
@@ -26,6 +25,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={tw`h-full bg-white w-full`}>
+        <Header title={'Pick a Movie'}/>
         <FlatList
             data={movies}
             horizontal={false}
