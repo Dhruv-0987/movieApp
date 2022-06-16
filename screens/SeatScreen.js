@@ -2,10 +2,11 @@ import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import SeatArrangement from '../components/SeatArrangement'
-import { getTime } from '../slices/bookingSlice'
+import { getTime, getNumberOfSeats } from '../slices/bookingSlice'
 import { useSelector } from 'react-redux'
 const SeatScreen = () => {
     const TimeAndPlace = useSelector(getTime)
+    const totalSeats = useSelector(getNumberOfSeats)
     let pvrPrimeBooked = generateBookedSeats(120)
     let pvrPrimePlusBooked = generateBookedSeats(60)
     let pvrReclinerBooked = generateBookedSeats(36)

@@ -39,8 +39,13 @@ const DatePicker = () => {
     <View>
         <FlatList 
             data={week}
-            keyExtractor={(item)=>item.date}
+            keyExtractor={(item)=>{item.date}}
             horizontal
+            ItemSeparatorComponent={()=>{
+                return (
+                    <View style={tw`h-full w-[2px] bg-gray-400 mr-4 ml-4`}></View>
+                )
+            }}
             renderItem={(item) => {
                 return(
                 <View style={tw`flex-row h-20 items-center justify-center`}>
@@ -50,7 +55,7 @@ const DatePicker = () => {
                             <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date ? "text-purple-400": "text-black"}`}>{item.item.day}</Text>
                         </View>
                     </TouchableOpacity>
-                    <View style={tw`h-full w-[2px] bg-gray-400 mr-4 ml-4`}></View>
+                    
                 </View>
                 
                 )

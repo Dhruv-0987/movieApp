@@ -16,7 +16,7 @@ const TimeAndPlace = ({show}) => {
     }
 
   return (
-    <View style={tw`w-80 h-60 bg-gray-100 border-gray-100 shadow-md m-6 mb-2`}>
+    <View style={tw`w-80 h-60 bg-gray-100 border-gray-100 shadow-md m-6 ml-8 mb-2`}>
       <Text style={tw`text-3xl font-semibold m-4 text-gray-600 text-purple-400`}>{show.name}</Text>
       <View>
         <FlatList 

@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
@@ -6,7 +5,6 @@ import HomeScreen from './screens/HomeScreen';
 import MovieScreen from './screens/MovieScreen';
 import BookingScreen from './screens/BookingScreen';
 import SeatScreen from './screens/SeatScreen';
-import Header from './components/Header';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
