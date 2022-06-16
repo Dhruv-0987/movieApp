@@ -3,34 +3,44 @@ import React, { useEffect, useState } from 'react'
 import tw from 'twrnc'
 const SeatArrangement = ({seats}) => {
     const [seatArray, setSeatArray] = useState([])
-    console.log(seats)
     
     useEffect(()=>{
         const temp = []
-        for (let i = 1; i < seats.oneSide; i++){
+        for (let i = 1; i <= seats.totalSeats; i++){
             temp.push(i)
         }
         setSeatArray(temp)
     },[])
-    console.log(seatArray)
+
+    function checkSeatBooked(seatNum){
+        return seats.booked.includes(seatNum)
+    }
+
+    console.log('booked seats',seats.booked)
   return (
+    <View style={tw`m-2 flex items-center justify-center`}>
+    
     <View style={tw`m-2`}>
+        <Text style={tw`ml-3 text-md`}>{seats.type}: {seats.price}</Text>
         <FlatList
             data={seatArray}
             horizontal={false}
-            numColumns={6}
+            numColumns={12}
             keyExtractor={(item)=>item}
             renderItem={(item) => {
                 return(
-                    <View>
-                        <TouchableOpacity style={tw`h-2 w-2 border border-green-200`}>
-                            <Text>{item.item}</Text>
-                        </TouchableOpacity>
+                    <View style={tw`flex-row`}>
+                        <View style={tw`${item.item % 6 === 0 ? 'mr-2' : ''} `}>
+                            <TouchableOpacity style={tw`h-4 w-6 m-1 border border-green-200 ${checkSeatBooked(item.item) ? 'bg-gray-400':''}`}>
+                                <Text style={tw`text-center`}>{item.item}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 )
-                
             }}
         />
+    </View>
+    
     </View>
   )
 }

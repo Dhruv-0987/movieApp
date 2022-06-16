@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import { setDate } from '../slices/bookingSlice'
+import { setDate, setNumberOfSeats } from '../slices/bookingSlice'
 import tw from 'twrnc'
 import { useDispatch, useSelector } from 'react-redux'
 const DatePicker = () => {

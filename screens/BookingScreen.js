@@ -1,21 +1,47 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, TurboModuleRegistry } from 'react-native'
+import React, { useEffect, useState, useSyncExternalStore } from 'react'
 import Header from '../components/Header'
 import tw from 'twrnc'
 import DatePicker from '../components/DatePicker'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch} from 'react-redux'
 import { getMovieTitle } from '../slices/bookingSlice'
 import TimeAndPlace from '../components/TimeAndPlace'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { getTime, getDate, getNumberOfSeats } from '../slices/bookingSlice'
+import Dialog, { DialogContent } from 'react-native-popup-dialog'
+import NoOfPeople from '../components/NoOfPeople'
+import SeatScreen from './SeatScreen'
+import { Provider } from 'react-redux'
+import { store } from '../store'
+import { setNumberOfSeats } from '../slices/bookingSlice'
 const BookingScreen = () => {
-    
     const [shows, setShows] = useState(null)
+    const [noDateTime, setNoDateTime] = useState(true)
+    const [showDialog, setShowDialog] = useState(false)
     const currentMovie = useSelector(getMovieTitle)
     const navigator = useNavigation()
+    const time = useSelector(getTime)
+    const date = useSelector(getDate)
+    var numPeople = useSelector(getNumberOfSeats)
+    const dispatch = useDispatch()
+    const [numPeopleSelected, setNumPeopleSelected] = useState(false)
     useEffect(() => {
         setShows(currentMovie.shows.shows)
-    },[])
-    
+        if(date && time){
+          setNoDateTime(false)
+        }
+    },[currentMovie])
+
+    console.log(numPeople)
+    const handleContinue = () => {
+      if (numPeople !== null && time !== null && date !== null){
+        navigator.navigate('SeatScreen')
+        setNumPeopleSelected(true)
+      }else {
+        setNumPeopleSelected(false)
+      }
+    }
+
   return (
     <View>
       <Header title={'Pick Date and Time'}/>
@@ -24,7 +50,7 @@ const BookingScreen = () => {
       </View>
       <FlatList
         data={shows}
-        keyExtractor={(item)=>item.name}
+        keyExtractor={(item)=>item.item}
         horizontal={false}
         renderItem={(item) => {
             return (
@@ -32,11 +58,30 @@ const BookingScreen = () => {
             )
         }}
       />
+      <Dialog
+        visible={showDialog}
+        onTouchOutside={() => {
+          setShowDialog(false);
+        }}
+      >
+        <DialogContent>
+          <Provider store={store}>
+              <NoOfPeople selected={numPeopleSelected}/>
+          </Provider>  
+        </DialogContent>
+      </Dialog>
+      {date===null || time===null && <Text style={tw`text-yellow-400 m-1 text-center`}>Please Select Both Date and Time</Text>}
+      <View style={tw`flex-row items-center justify-center`}>
+        <TouchableOpacity onPress={()=>setShowDialog(true)}
+        style={tw`w-40 h-15 bg-white m-2  border border-white shadow-md rounded-full`}>
+          <Text style={tw`text-xl text-center text-purple-400 mt-1`}>{numPeople !== null ? `${numPeople.num} Persons`: `Select No Of People`}</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=>navigator.navigate('SeatScreen')}
-      style={tw`w-80 h-15 bg-purple-400 m-2 ml-6 border border-white rounded-md`}>
-        <Text style={tw`text-2xl text-center text-white mt-2`}>Continue</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleContinue}
+        style={tw`w-40 h-15 bg-purple-400 m-2 border border-gray-200 rounded-full shadow-md`}>
+          <Text style={tw`text-2xl text-center text-white mt-2`}>Continue</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }

@@ -1,3 +1,20 @@
+type SeatArrangement @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  pvr: AWSJSON
+  inox: AWSJSON
+}
+
+type Bookings @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  place: String
+  time: String
+  seats: String
+  movie: String
+  movieImage: String
+  date: String
+  totalSeats: String
+}
+
 type Movies @model @auth(rules: [{allow: public}]) {
   id: ID!
   title: String
