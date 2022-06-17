@@ -2,10 +2,13 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, BackHandler, Scroll
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import SeatArrangement from '../components/SeatArrangement'
-import { getTime, getNumberOfSeats, getDate, getMovieTitle, getSeatNumbers } from '../slices/bookingSlice'
-import { useSelector } from 'react-redux'
+import { getTime, getNumberOfSeats, getDate, getMovieTitle, getSeatNumbers
+, setDate, setTime, setMovieTitle, setNumberOfSeats, setSeatNumbers } from '../slices/bookingSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import tw from 'twrnc'
 import { useNavigation } from '@react-navigation/native'
+import { DataStore } from 'aws-amplify'
+import { Bookings } from '../src/models'
 
 const SeatScreen = () => {
     const TimeAndPlace = useSelector(getTime)
@@ -23,6 +26,8 @@ const SeatScreen = () => {
     useEffect(() => {
       
     },[])
+
+    const dispatch = useDispatch()
 
     const seatNumbersPvr = [{type: 'recliner', totalSeats: 36, oneSide: 10, price: 300, booked: pvrReclinerBooked},
     {type: 'prime plus', totalSeats: 60, oneSide: 15, price: 200, booked: pvrPrimePlusBooked},
@@ -52,9 +57,29 @@ const SeatScreen = () => {
      }
 
     function handleBooking(){
-
+      console.log('adding booking')
+      DataStore.save(
+        new Bookings({
+          place: TimeAndPlace.place,
+          time: TimeAndPlace.time,
+          seats: {
+            "type": seatNumbers.type,
+            "seats": seatNumbers.seats
+          },
+          movie: movieTitle.title,
+          movieImage: movieTitle.thumbnail,
+          date: `${Date.date} ${Date.month} - ${Date.day}`,
+          totalSeats: totalSeats.num
+        })
+      )
+      navigator.navigate('ConfirmationScreen')
     }
 
+    console.log(movieTitle)
+    console.log(TimeAndPlace)
+    console.log(seatNumbers)
+    console.log(Date)
+    console.log(totalSeats)
   return (
     <View>
     <Header title={'Select Seats'}/>

@@ -6,15 +6,19 @@ import tw from 'twrnc'
 import ActorTile from '../components/ActorTile'
 import { useNavigation } from '@react-navigation/native'
 import Header from '../components/Header'
+import { useDispatch } from 'react-redux'
+import { setNumberOfSeats, setSeatNumbers} from '../slices/bookingSlice'
 const MovieScreen = () => {
     const movie = useSelector(getMovieTitle)
     const [cast, setCast] = useState(null)
     const navigator = useNavigation()
-
+    const dispatch = useDispatch()
     useEffect(()=>{
        if(movie){
         setCast(movie.cast.actors)
        }
+       dispatch(setNumberOfSeats(null))
+       dispatch(setSeatNumbers(null))
     }, [])
 
   return (

@@ -26,20 +26,21 @@ const HomeScreen = () => {
   return (
     
     <SafeAreaView style={tw`h-full bg-white w-full`}>
-
+    <ScrollView style={{width: '100%', height: '90%'}} vertical={true}>
         <Header title={'Pick a Movie'}/>
-        <ScrollView style={{width: '100%'}}>
-        <FlatList
-            data={movies}
-            horizontal={false}
-            keyExtractor={(item) => item.id}
-            renderItem={(item) => {
-                    return(
-                        <MovieTIle movie={item.item}/>
-                    )
-            }}
-            />
-        </ScrollView>
+        <View>
+            <FlatList
+                data={movies}
+                horizontal={false}
+                keyExtractor={(item) => item.id}
+                renderItem={(item) => {
+                        return(
+                            <MovieTIle movie={item.item}/>
+                        )
+                }}
+                />
+        </View>
+    </ScrollView>
     </SafeAreaView>
 
   )

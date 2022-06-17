@@ -1,0 +1,89 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-movieapp-staging-131131-authRole",
+      "UnauthRoleArn": "arn:aws:iam::404541122521:role/amplify-movieapp-staging-131131-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::404541122521:role/amplify-movieapp-staging-131131-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-movieapp-staging-131131-deployment",
+      "UnauthRoleName": "amplify-movieapp-staging-131131-unauthRole",
+      "StackName": "amplify-movieapp-staging-131131",
+      "StackId": "arn:aws:cloudformation:us-east-1:404541122521:stack/amplify-movieapp-staging-131131/822b6bb0-ebe3-11ec-96fc-0ebbee3766b9",
+      "AmplifyAppId": "dtutticivttxi"
+    }
+  },
+  "api": {
+    "movieapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "rws2qpsbbze2fa73zzavgukw7y",
+        "GraphQLAPIEndpointOutput": "https://7t5craqhb5cpphrgvmxd7agoja.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-7do3zr4yezg27ny2mjs575tcje"
+      },
+      "lastPushTimeStamp": "2022-06-17T16:35:17.756Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-movieapp-staging-131131-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apimovieapp"
+      },
+      "lastPushDirHash": "qHQf0cZs7lHERjWFwi8wy52L7i0="
+    }
+  },
+  "auth": {
+    "movieapp15d660c6": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "output": {
+        "UserPoolId": "us-east-1_vnECrfjWL",
+        "AppClientIDWeb": "4fldh9r7f563v3v34lj2h6qols",
+        "AppClientID": "68ms116n2csokdbt951qcp9qvf",
+        "IdentityPoolId": "us-east-1:b742e97e-2d58-412f-9751-53badf023e25",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:404541122521:userpool/us-east-1_vnECrfjWL",
+        "IdentityPoolName": "movieapp15d660c6_identitypool_15d660c6__staging",
+        "UserPoolName": "movieapp15d660c6_userpool_15d660c6"
+      },
+      "lastPushTimeStamp": "2022-06-17T16:35:17.760Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-movieapp-staging-131131-deployment/amplify-cfn-templates/auth/movieapp15d660c6-cloudformation-template.json",
+        "logicalId": "authmovieapp15d660c6"
+      }
+    }
+  }
+}

@@ -31,7 +31,7 @@ const MovieTIle = ({movie}) => {
       source={{uri: movie.thumbnail}}/>
       <View style={tw`flex items-start ml-2`}>
       <View>
-        <Text style={tw`text-xl text-gray-600 font-semibold`}>{movie.title}</Text>
+        <Text style={tw`text-xl max-w-40 text-gray-600 font-semibold`}>{movie.title}</Text>
         <Text >{movie.formats}</Text>
         <Text>Rating: {movie.rating}%</Text>
         <Text>{movie.languages}</Text>

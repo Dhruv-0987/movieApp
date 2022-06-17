@@ -93,7 +93,7 @@ export const schema = {
                 "seats": {
                     "name": "seats",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -292,5 +292,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "c99188ddfda1b92edb5b30e4f7243174"
+    "version": "65b8f9caaa41f0c57daf1469659718ce"
 };
