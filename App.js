@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
@@ -16,6 +16,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
+    
       <SafeAreaProvider>
         <Stack.Navigator initialRouteName='HomeScreen'>
           <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown:false}}/>
@@ -24,6 +25,7 @@ export default function App() {
           <Stack.Screen name='SeatScreen' component={SeatScreen} options={{headerShown:false}}/>
         </Stack.Navigator>
       </SafeAreaProvider>
+    
     </NavigationContainer>
     </Provider>
   );

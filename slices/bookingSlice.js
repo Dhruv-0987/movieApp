@@ -35,6 +35,6 @@ export const {setMovieTitle, setDate, setNumberOfSeats, setSeatNumbers, setTime}
 export const getMovieTitle = (state) => state.book.movieTitle;
 export const getDate = (state) => state.book.date;
 export const getNumberOfSeats = (state) => state.book.numberOfSeats;
-export const getSeatNumbers = (state) => state.book.getSeatNumbers;
+export const getSeatNumbers = (state) => state.book.seatNumbers;
 export const getTime = (state) => state.book.time
 export default bookSlice.reducer

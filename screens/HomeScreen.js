@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { SafeAreaView } from 'react-native'
 import tw from "tailwind-react-native-classnames"
@@ -24,8 +24,11 @@ const HomeScreen = () => {
    
 
   return (
+    
     <SafeAreaView style={tw`h-full bg-white w-full`}>
+
         <Header title={'Pick a Movie'}/>
+        <ScrollView style={{width: '100%'}}>
         <FlatList
             data={movies}
             horizontal={false}
@@ -36,6 +39,7 @@ const HomeScreen = () => {
                     )
             }}
             />
+        </ScrollView>
     </SafeAreaView>
 
   )

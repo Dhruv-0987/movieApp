@@ -1,44 +1,33 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import tw from 'twrnc'
-import { useSelector } from 'react-redux'
-import { getNumberOfSeats } from '../slices/bookingSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getNumberOfSeats, getSeatNumbers, setSeatNumbers } from '../slices/bookingSlice'
 const SeatArrangement = ({seats}) => {
     // to display seats
     const [seatArray, setSeatArray] = useState([])
     const totalSeats = useSelector(getNumberOfSeats)
+    const seatNumbers = useSelector(getSeatNumbers)
+    const dispatch = useDispatch()
     // for all seat numbers
     const [selectedSeats, setSelectedSeats] = useState([])
-    const [canSelect, setCanSelect] = useState(true)
     // contain seat numbers to change classes
     const [currentSeat, setCurrentSeat] = useState(null)
-    const [unselectedSeat, setUnSelectedSeat] = useState(-1)
-    useEffect(()=>{
-        const allSeats = generateSeatArray()
-        setSeatArray(allSeats)
-    },[selectedSeats])
+    const [unselectedSeat, setUnSelectedSeat] = useState(null)
+    const allSeats = generateSeatArray()
 
+    useEffect(()=>{
+        setSeatArray(allSeats)
+        
+    },[selectedSeats])
+    console.log(seatNumbers)
     function generateSeatArray(){
-        console.log('generation seats')
         var allSeats = []
         for (let i = 1; i <= seats.totalSeats; i++){
             if (checkSeatBooked(i)){
                 allSeats.push({
                     value: i,
                     style: styles.booked,
-                    selected: false
-                })
-            }else if(checkSeatSelected(i)){
-                allSeats.push({
-                    value: i,
-                    style: styles.selected,
-                    selected: false
-                })
-            }
-            else if (checkUnselected(i)) {
-                allSeats.push({
-                    value: i,
-                    style: styles.basic,
                     selected: false
                 })
             }else{
@@ -65,23 +54,58 @@ const SeatArrangement = ({seats}) => {
     }
 
     const handleSeatSelection = (seat) => {
-        if (seat.selected){
-            seat.selected = !seat.selected
-            seat.style = seat.selected ? styles.selected : styles.basic
-            var selected = removeItem(selectedSeats, seat.value)
-            setSelectedSeats(selected)
-            setUnSelectedSeat(seat.value)
-        }else if (!seat.selected){
-            var selected = selectedSeats
-            selected.push(seat.value)
-            setSelectedSeats(selected)
-            seat.selected = !seat.selected
-            seat.style = seat.selected ? styles.selected : styles.basic
-            setCurrentSeat(seat.value)
-        }   
+        addSelection(seat)
+        // for changin the styling
+        var selected = seatArray.map((item) => {
+            if (item.value === seat.value){
+                return {
+                    value: seat.value,
+                    selected: true,
+                    style: styles.selected
+                }
+            }
+            return item
+        })
+        setSeatArray(selected)
+    }
+    
+    function addSelection(seat){
+        if(seatNumbers === null || seatNumbers === undefined){
+            var temp = []
+            temp.push(seat.value)
+            dispatch(setSeatNumbers({
+                type: seats.type,
+                seats: temp
+            }))
+        }else {
+            var temp = []
+            temp.push(seat.value)
+            dispatch(setSeatNumbers({
+                type: seats.type,
+                seats: seatNumbers.seats.concat(temp)
+            }))
+        }
+    }
+
+    function removeSelection(){
+        var selected = seatArray.map((item) => {
+            if (item.selected === true){
+                return {
+                    value: item.value,
+                    selected: false,
+                    style: styles.basic
+                }
+            }
+            return item
+        })
+        setSeatArray(selected)
+        if( seatNumbers !== null){
+            dispatch(setSeatNumbers(null))
+        }
     }
 
     function removeItem(array, item) {
+        console.log('removing item',array, item)
         var i = array.length;
     
         while (i--) {
@@ -92,12 +116,18 @@ const SeatArrangement = ({seats}) => {
         return array
     }
 
-    console.log(selectedSeats, currentSeat)
   return (
     <View style={tw`m-2 flex items-center justify-center`}>
     
     <View style={tw`m-2`}>
-        <Text style={tw`ml-3 text-md`}>{seats.type}: {seats.price}</Text>
+        <View style={tw`flex-row items-center justify-between m-1`}>
+            <Text style={tw` text-md`}>{seats.type}: {seats.price}</Text>
+            <TouchableOpacity style={tw`h-6 rounded-full w-15 bg-purple-400`}
+            onPress={removeSelection}>
+                <Text style={tw`text-center text-white`}>reset</Text>
+            </TouchableOpacity>
+        </View>
+        
         <FlatList
             data={seatArray}
             horizontal={false}
