@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
-import { DataStore } from 'aws-amplify'
-import { Bookings } from '../src/models'
-const BookingTile = ({data, toDelete}) => {
-    console.log('data',data)
 
+const BookingTile = ({data, toDelete}) => {
     
   return (
     <View style={tw`flex-row items-start mt-4 rounded-md shadow-md justify-start  mr-4 ml-4 border-gray-200 bg-gray-100`}>

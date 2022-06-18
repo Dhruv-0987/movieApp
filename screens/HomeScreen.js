@@ -8,7 +8,7 @@ import MovieTIle from '../components/MovieTIle'
 import Header from '../components/Header'
 const HomeScreen = () => {
     const [movies, setMovies] = useState(null)
-    const [fetched, setFetched] = useState(false)
+    
     const getMovies = async () => {
         await DataStore.query(Movies).then(res => {
             setMovies(res)

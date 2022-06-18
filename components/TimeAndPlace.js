@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import tw from 'twrnc'
 import { getTime, setTime } from '../slices/bookingSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, } from 'react'
+
 const TimeAndPlace = ({show}) => {
     const [itemSelected, setItemSelected] = useState(null)
     const dispatch = useDispatch()

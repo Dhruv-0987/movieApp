@@ -14,7 +14,7 @@ const NoOfPeople = ({selected}) => {
             num: item
         }))
     }
-    console.log('selected', selected)
+    
   return (
     <View style={tw`h-25`}>
       <Text style={tw`text-lg text-center text-gray-400 p-2`}>Number Of Persons</Text>

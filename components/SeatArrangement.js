@@ -12,15 +12,14 @@ const SeatArrangement = ({seats}) => {
     // for all seat numbers
     const [selectedSeats, setSelectedSeats] = useState([])
     // contain seat numbers to change classes
-    const [currentSeat, setCurrentSeat] = useState(null)
-    const [unselectedSeat, setUnSelectedSeat] = useState(null)
+   
     const allSeats = generateSeatArray()
 
     useEffect(()=>{
         setSeatArray(allSeats)
         
     },[selectedSeats])
-    console.log('totalSeats',totalSeats, seatNumbers)
+   
     function generateSeatArray(){
         var allSeats = []
         for (let i = 1; i <= seats.totalSeats; i++){

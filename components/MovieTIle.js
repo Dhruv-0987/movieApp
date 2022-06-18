@@ -36,7 +36,7 @@ const MovieTIle = ({movie}) => {
         <Text>Rating: {movie.rating}%</Text>
         <Text>{movie.languages}</Text>
         </View>
-        <TouchableOpacity onPress={handleBookTickets} style={tw`mt-10 bg-[#bdb2ff] h-10 w-40 rounded-md`}>
+        <TouchableOpacity onPress={handleBookTickets} style={tw`mt-10 bg-[#bdb2ff] h-10 w-40  rounded-md`}>
           <Text style={tw`text-center mt-2 text-white font-semibold`}>Book Tickets Now</Text>
         </TouchableOpacity>
       </View>

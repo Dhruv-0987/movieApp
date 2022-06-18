@@ -9,14 +9,12 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { getTime, getDate, getNumberOfSeats, getMovieTitle, setTime, setNumberOfSeats, setDate  } from '../slices/bookingSlice'
 import Dialog, { DialogContent } from 'react-native-popup-dialog'
 import NoOfPeople from '../components/NoOfPeople'
-import SeatScreen from './SeatScreen'
 import { Provider } from 'react-redux'
 import { store } from '../store'
 
-const BookingScreen = ({navigation}) => {
+const BookingScreen = () => {
     const [shows, setShows] = useState(null)
     const [selectedTime, setSelectedTime] = useState(null)
-    const [noDateTime, setNoDateTime] = useState(true)
     const [showDialog, setShowDialog] = useState(false)
     const currentMovie = useSelector(getMovieTitle)
     const navigator = useNavigation()
@@ -41,7 +39,6 @@ const BookingScreen = ({navigation}) => {
       }, [selectedTime])
     );
 
-    console.log(numPeople)
     const handleContinue = () => {
       if (numPeople !== null && time !== null && date !== null){
         navigator.navigate('SeatScreen')

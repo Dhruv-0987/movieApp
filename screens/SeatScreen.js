@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import { DataStore } from 'aws-amplify'
 import { Bookings } from '../src/models'
 import Dialog, { DialogContent } from 'react-native-popup-dialog'
+
 const SeatScreen = () => {
     const [audi, setAudi] = useState(null)
     const TimeAndPlace = useSelector(getTime)
@@ -21,7 +22,6 @@ const SeatScreen = () => {
 
     useEffect(() => {
       const showInfo = movieTitle.shows.shows.find(item => item.name === TimeAndPlace.place)
-      console.log(showInfo)
       const timings = showInfo.timings
       const arrangement = timings.map(item => {
         const maxSeatsRecliner =  Math.floor((Math.random()*((30-16+1))+16))
