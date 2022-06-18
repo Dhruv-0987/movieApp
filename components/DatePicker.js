@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import { setDate, setNumberOfSeats } from '../slices/bookingSlice'
+import { getDate, setDate, setNumberOfSeats } from '../slices/bookingSlice'
 import tw from 'twrnc'
 import { useDispatch, useSelector } from 'react-redux'
 const DatePicker = () => {
     const dispatch = useDispatch()
+    const selectedDate = useSelector(getDate)
     const [week, setWeek] = useState([])
     const [currentDate, setCurrentDate] = useState(null)
     const [currentMovie, setCurrentMovie] = useState(null)
@@ -51,8 +52,8 @@ const DatePicker = () => {
                 <View style={tw`flex-row h-20 items-center justify-center`}>
                     <TouchableOpacity onPress={()=>handleDateSelect(item.item)}>
                         <View style={tw`h-[20px] w-10 bg-gray-100 mb-4`}>
-                            <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date ? "text-purple-400": "text-black"}`}>{item.item.date}</Text>
-                            <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date ? "text-purple-400": "text-black"}`}>{item.item.day}</Text>
+                            <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date && selectedDate !== null ? "text-purple-400": "text-black"}`}>{item.item.date}</Text>
+                            <Text style={tw`font-semibold text-md text-center ${currentDate === item.item.date && selectedDate !== null ? "text-purple-400": "text-black"}`}>{item.item.day}</Text>
                         </View>
                     </TouchableOpacity>
                     

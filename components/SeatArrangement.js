@@ -20,7 +20,7 @@ const SeatArrangement = ({seats}) => {
         setSeatArray(allSeats)
         
     },[selectedSeats])
-    console.log(seatNumbers)
+    console.log('totalSeats',totalSeats, seatNumbers)
     function generateSeatArray(){
         var allSeats = []
         for (let i = 1; i <= seats.totalSeats; i++){
@@ -45,28 +45,23 @@ const SeatArrangement = ({seats}) => {
         return seats.booked.includes(seatNum)
     }
 
-    function checkSeatSelected(seatNum){
-        return currentSeat === seatNum
-    }
-
-    function checkUnselected(seatNum){
-        return unselectedSeat === seatNum
-    }
-
     const handleSeatSelection = (seat) => {
-        addSelection(seat)
-        // for changin the styling
-        var selected = seatArray.map((item) => {
-            if (item.value === seat.value){
-                return {
-                    value: seat.value,
-                    selected: true,
-                    style: styles.selected
+        if (seatNumbers === null || seatNumbers.seats.length < parseInt(totalSeats.num))
+        {
+            addSelection(seat)
+            // for changin the styling
+            var selected = seatArray.map((item) => {
+                if (item.value === seat.value){
+                    return {
+                        value: seat.value,
+                        selected: true,
+                        style: styles.selected
+                    }
                 }
-            }
-            return item
-        })
-        setSeatArray(selected)
+                return item
+            })
+            setSeatArray(selected)
+        }
     }
     
     function addSelection(seat){
@@ -102,18 +97,6 @@ const SeatArrangement = ({seats}) => {
         if( seatNumbers !== null){
             dispatch(setSeatNumbers(null))
         }
-    }
-
-    function removeItem(array, item) {
-        console.log('removing item',array, item)
-        var i = array.length;
-    
-        while (i--) {
-            if (array[i] === item) {
-                array.splice(array.indexOf(item), 1);
-            }
-        }
-        return array
     }
 
   return (

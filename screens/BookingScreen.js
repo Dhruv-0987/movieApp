@@ -4,18 +4,18 @@ import Header from '../components/Header'
 import tw from 'twrnc'
 import DatePicker from '../components/DatePicker'
 import { useSelector , useDispatch} from 'react-redux'
-import { getMovieTitle } from '../slices/bookingSlice'
 import TimeAndPlace from '../components/TimeAndPlace'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
-import { getTime, getDate, getNumberOfSeats } from '../slices/bookingSlice'
+import { getTime, getDate, getNumberOfSeats, getMovieTitle, setTime, setNumberOfSeats, setDate  } from '../slices/bookingSlice'
 import Dialog, { DialogContent } from 'react-native-popup-dialog'
 import NoOfPeople from '../components/NoOfPeople'
 import SeatScreen from './SeatScreen'
 import { Provider } from 'react-redux'
 import { store } from '../store'
-import { setNumberOfSeats } from '../slices/bookingSlice'
-const BookingScreen = () => {
+
+const BookingScreen = ({navigation}) => {
     const [shows, setShows] = useState(null)
+    const [selectedTime, setSelectedTime] = useState(null)
     const [noDateTime, setNoDateTime] = useState(true)
     const [showDialog, setShowDialog] = useState(false)
     const currentMovie = useSelector(getMovieTitle)
@@ -30,7 +30,16 @@ const BookingScreen = () => {
         if(date && time){
           setNoDateTime(false)
         }
-    },[currentMovie])
+        setSelectedTime(time)
+    },[])
+
+    useFocusEffect(
+      React.useCallback(() => {
+       dispatch(setTime(null))
+       dispatch(setDate(null))
+       dispatch(setNumberOfSeats(null))
+      }, [selectedTime])
+    );
 
     console.log(numPeople)
     const handleContinue = () => {

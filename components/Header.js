@@ -9,7 +9,7 @@ const Header = ({title}) => {
   return (
     <SafeAreaView style={tw`mt-7 rounded-lg`}>
         <View style={tw`w-full bg-[#bdb2ff] text-white h-20 flex-row items-center justify-evenly`}>
-            <Text style={tw`text-white text-xl pl-4`}>{title}</Text>
+            <Text style={tw`text-white text-xl pl-4 max-w-45`}>{title}</Text>
             <View style={tw`flex-row justify-between items-center`}>
               <TouchableOpacity style={tw` mr-2 bg-white h-10 w-25 rounded-lg`}
               onPress={()=>navigator.navigate('ConfirmationScreen')}>
