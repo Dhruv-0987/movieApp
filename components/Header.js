@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 const Header = ({title}) => {
   const navigator = useNavigation()
   return (
-    <SafeAreaView style={tw`mt-7 rounded-lg`}>
+    <SafeAreaView style={tw` rounded-lg`}>
         <View style={tw`w-full bg-[#bdb2ff] text-white h-20 flex-row items-center justify-evenly`}>
             <Text style={tw`text-white text-xl pl-4 max-w-45`}>{title}</Text>
             <View style={tw`flex-row justify-between items-center`}>

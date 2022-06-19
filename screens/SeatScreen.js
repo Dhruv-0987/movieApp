@@ -67,7 +67,7 @@ const SeatScreen = () => {
     }
 
   return (
-    <View>
+    <View style={tw`bg-gray-100`}>
     <Header title={'Select Seats'}/>
     <ScrollView style={{width: '100%', height: '90%'}} vertical={true}>
       <FlatList

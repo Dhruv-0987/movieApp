@@ -2,6 +2,8 @@
     "name": "movieapp",
     "version": "1.0.0",
     "scripts": {
+        "build": "expo build:web",
+        "postinstall": "npm run build",
         "start": "expo start --dev-client",
         "android": "expo run:android",
         "ios": "expo run:ios",

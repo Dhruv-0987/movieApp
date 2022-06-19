@@ -6,6 +6,7 @@ import MovieScreen from './screens/MovieScreen';
 import BookingScreen from './screens/BookingScreen';
 import SeatScreen from './screens/SeatScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
+import tw from 'twrnc'
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,7 +18,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <SafeAreaProvider>
+      <SafeAreaProvider style={tw`max-w-110`}>
         <Stack.Navigator initialRouteName='HomeScreen'>
           <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown:false}}/>
           <Stack.Screen name='MovieScreen' component={MovieScreen} options={{headerShown:false}}/>

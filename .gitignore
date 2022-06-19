@@ -77,3 +77,5 @@ dist/
 #amplify-do-not-edit-begin
 
 #amplify-do-not-edit-end
+
+.vercel

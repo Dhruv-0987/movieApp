@@ -49,7 +49,7 @@ const BookingScreen = () => {
     }
 
   return (
-    <View>
+    <View style={tw`bg-gray-100`}>
       <Header title={'Pick Date and Time'}/>
       <View style={tw`bg-gray-100 m-1 border-gray-100 shadow-md`}>
         <DatePicker/>
@@ -65,12 +65,13 @@ const BookingScreen = () => {
         }}
       />
       <Dialog
+        style={tw`max-w-90`}
         visible={showDialog}
         onTouchOutside={() => {
           setShowDialog(false);
         }}
       >
-        <DialogContent>
+        <DialogContent style={tw`max-w-90`}>
           <Provider store={store}>
               <NoOfPeople selected={numPeopleSelected}/>
           </Provider>  
