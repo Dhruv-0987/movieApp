@@ -86,7 +86,7 @@ const BookingScreen = () => {
 
         <TouchableOpacity onPress={handleContinue}
         style={tw`w-40 h-15 bg-purple-400 m-2 border border-gray-200 rounded-full shadow-md`}>
-          <Text style={tw`text-2xl text-center text-white mt-2`}>Continue</Text>
+          <Text style={tw`text-2xl text-center text-white mt-2`}>{numPeople ? 'Book Seats' : 'Continue'}</Text>
         </TouchableOpacity>
       </View>
     </View>

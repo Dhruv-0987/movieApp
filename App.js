@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <SafeAreaProvider style={tw`max-w-110`}>
+      <SafeAreaProvider style={tw`max-w-100`}>
         <Stack.Navigator initialRouteName='HomeScreen'>
           <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown:false}}/>
           <Stack.Screen name='MovieScreen' component={MovieScreen} options={{headerShown:false}}/>

@@ -19,7 +19,7 @@ const SeatScreen = () => {
     const movieTitle = useSelector(getMovieTitle)
     const [showDialog, setShowDialog] = useState(false)
     const navigator = useNavigation()
-
+    console.log(seatNumbers)
     useEffect(() => {
       const showInfo = movieTitle.shows.shows.find(item => item.name === TimeAndPlace.place)
       const timings = showInfo.timings
@@ -71,7 +71,7 @@ const SeatScreen = () => {
     <Header title={'Select Seats'}/>
     <ScrollView style={{width: '100%', height: '90%'}} vertical={true}>
       <FlatList
-        data={audi?.arrangement}
+        data={audi.arrangement}
         keyExtractor={(item)=>item.type}
         horizontal={false}
         renderItem={(item)=>{
